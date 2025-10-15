@@ -22,7 +22,7 @@ class ChatBubble extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               spreadRadius: 1,
               blurRadius: 3,
               offset: const Offset(0, 2),
