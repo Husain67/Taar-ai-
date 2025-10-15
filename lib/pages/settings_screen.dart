@@ -8,7 +8,7 @@ class SettingsScreen extends StatefulWidget {
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class SettingsScreenState extends State<SettingsScreen> {
   final PreferencesService _preferencesService = PreferencesService();
   String _selectedProvider = 'OpenRouter';
   final TextEditingController _apiKeyController = TextEditingController();

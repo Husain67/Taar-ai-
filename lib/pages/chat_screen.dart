@@ -11,7 +11,7 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
   final ApiService _apiService = ApiService();
   final List<ChatMessage> _messages = [
