@@ -20,12 +20,12 @@ class ChatBubble extends StatelessWidget {
         decoration: BoxDecoration(
           color: isUser ? Colors.blue : const Color(0xFF1E1E1E),
           borderRadius: BorderRadius.circular(20.0),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.2),
               spreadRadius: 1,
               blurRadius: 3,
-              offset: const Offset(0, 2),
+              offset: Offset(0, 2),
             ),
           ],
         ),
