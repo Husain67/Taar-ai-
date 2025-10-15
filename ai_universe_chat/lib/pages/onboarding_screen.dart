@@ -14,7 +14,7 @@ class OnboardingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(flex: 2),
-            Icon(Icons.auto_awesome, size: 80, color: Colors.blue),
+            const Icon(Icons.auto_awesome, size: 80, color: Colors.blue),
             const SizedBox(height: 20),
             const Text(
               'Welcome to AI Universe Chat',

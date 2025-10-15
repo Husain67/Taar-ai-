@@ -6,10 +6,10 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -22,15 +22,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+    return const Scaffold(
+      backgroundColor: Color(0xFF121212),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.auto_awesome, size: 100, color: Colors.blue),
-            const SizedBox(height: 20),
-            const Text(
+            SizedBox(height: 20),
+            Text(
               'Welcome to AI Chat Universe',
               style: TextStyle(
                 fontSize: 24,
@@ -38,8 +38,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 40),
-            const CircularProgressIndicator(
+            SizedBox(height: 40),
+            CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
             ),
           ],
