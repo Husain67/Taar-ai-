@@ -1,6 +1,6 @@
 class ChatMessage {
   final String role;
-  final String content;
+  String content;
 
   ChatMessage({required this.role, required this.content});
 }
