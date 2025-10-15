@@ -1,15 +1,26 @@
-import 'package:ai_universe_chat/localizations/app_localizations.dart';
 import 'package:ai_universe_chat/services/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_universe_chat/pages/splash_screen.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeService(),
-      child: const AIUniverseChat(),
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en'),
+        Locale('hi'),
+        Locale('ar'),
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: ChangeNotifierProvider(
+        create: (_) => ThemeService(),
+        child: const AIUniverseChat(),
+      ),
     ),
   );
 }
@@ -23,31 +34,14 @@ class AIUniverseChat extends StatelessWidget {
       builder: (context, themeService, child) {
         return MaterialApp(
           title: 'AI Universe Chat',
-          theme: ThemeService.lightTheme,
-          darkTheme: ThemeService.darkTheme,
+          theme: themeService.themeData,
+          darkTheme: ThemeService.darkTheme, // Keep a dark theme reference for the system
           themeMode: themeService.themeMode,
           home: const SplashScreen(),
           debugShowCheckedModeBanner: false,
-          supportedLocales: const [
-            Locale('en', ''),
-            Locale('es', ''),
-            Locale('fr', ''),
-          ],
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          localeResolutionCallback: (locale, supportedLocales) {
-            for (var supportedLocale in supportedLocales) {
-              if (supportedLocale.languageCode == locale?.languageCode &&
-                  supportedLocale.countryCode == locale?.countryCode) {
-                return supportedLocale;
-              }
-            }
-            return supportedLocales.first;
-          },
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
         );
       },
     );

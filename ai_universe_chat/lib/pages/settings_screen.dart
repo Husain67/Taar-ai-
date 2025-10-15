@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ai_universe_chat/services/preferences_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class SettingsScreenState extends State<SettingsScreen> {
       _selectedModel,
     );
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Settings saved!')),
+      SnackBar(content: Text('settings_saved'.tr())),
     );
   }
 
@@ -44,49 +45,38 @@ class SettingsScreenState extends State<SettingsScreen> {
     _preferencesService.saveSettings('OpenRouter', '', 'z-ai/glm-4.6');
     _loadSettings();
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Settings reset!')),
+      SnackBar(content: Text('settings_reset'.tr())),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Settings'),
-        backgroundColor: const Color(0xFF1E1E1E),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'Kilo Code Documentation',
-              style: TextStyle(color: Colors.blue),
-            ),
-          )
-        ],
+        title: Text('settings'.tr()),
+        backgroundColor: Theme.of(context).cardColor,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-          _buildDropdown('API Provider', _selectedProvider, ['OpenRouter', 'Kilo Code', 'Groq', 'HuggingFace', 'Gemini'], (value) {
+          _buildDropdown('api_provider'.tr(), _selectedProvider, ['OpenRouter', 'Kilo Code', 'Groq', 'HuggingFace', 'Gemini'], (value) {
             setState(() {
               _selectedProvider = value!;
             });
           }),
           const SizedBox(height: 20),
-          _buildTextField('API Key', _apiKeyController, isPassword: true),
+          _buildTextField('api_key'.tr(), _apiKeyController, isPassword: true),
           const SizedBox(height: 20),
-          _buildDropdown('Model', _selectedModel, ['z-ai/glm-4.6', 'openai/gpt-oss-20b', 'alibaba/tongyi-deepresearch-30b-a3b:free'], (value) {
+          _buildDropdown('model'.tr(), _selectedModel, ['z-ai/glm-4.6', 'openai/gpt-oss-20b', 'alibaba/tongyi-deepresearch-30b-a3b:free'], (value) {
             setState(() {
               _selectedModel = value!;
             });
           }),
           const SizedBox(height: 40),
-          _buildButton('Save Key', _saveSettings),
+          _buildButton('save_key'.tr(), _saveSettings),
           const SizedBox(height: 10),
-          _buildButton('Reset', _resetSettings, isOutlined: true),
-          const SizedBox(height: 10),
-          _buildButton('Log Out', () {}, isOutlined: true),
+          _buildButton('reset'.tr(), _resetSettings, isOutlined: true),
         ],
       ),
     );
@@ -96,27 +86,26 @@ class SettingsScreenState extends State<SettingsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(color: Colors.white70, fontSize: 16)),
+        Text(label),
         const SizedBox(height: 8),
         DropdownButtonFormField<String>(
           value: value,
           items: items.map((String item) {
             return DropdownMenuItem<String>(
               value: item,
-              child: Text(item, style: const TextStyle(color: Colors.white)),
+              child: Text(item),
             );
           }).toList(),
           onChanged: onChanged,
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color(0xFF1E1E1E),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            fillColor: Theme.of(context).cardColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
             ),
           ),
-          dropdownColor: const Color(0xFF1E1E1E),
+          dropdownColor: Theme.of(context).cardColor,
         ),
       ],
     );
@@ -126,23 +115,21 @@ class SettingsScreenState extends State<SettingsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(color: Colors.white70, fontSize: 16)),
+        Text(label),
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,
           obscureText: isPassword,
-          style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color(0xFF1E1E1E),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            fillColor: Theme.of(context).cardColor,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
             ),
             suffixIcon: isPassword
                 ? IconButton(
-                    icon: const Icon(Icons.copy, color: Colors.white70),
+                    icon: const Icon(Icons.copy),
                     onPressed: () {},
                   )
                 : null,
@@ -165,7 +152,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                 ),
                 side: const BorderSide(color: Colors.white54),
               ),
-              child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 16)),
+              child: Text(text),
             )
           : ElevatedButton(
               onPressed: onPressed,
@@ -176,7 +163,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 16)),
+              child: Text(text, style: const TextStyle(color: Colors.white)),
             ),
     );
   }
