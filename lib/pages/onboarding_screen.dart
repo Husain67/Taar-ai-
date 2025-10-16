@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ai_universe_chat/pages/chat_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -16,20 +17,20 @@ class OnboardingScreen extends StatelessWidget {
             const Spacer(flex: 2),
             const Icon(Icons.auto_awesome, size: 80, color: Colors.blue),
             const SizedBox(height: 20),
-            const Text(
-              'Welcome to AI Universe Chat',
+            Text(
+              'welcome_title'.tr(),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Your AI-Powered Assistant',
+            Text(
+              'welcome_subtitle'.tr(),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 color: Colors.white70,
               ),
@@ -54,7 +55,7 @@ class OnboardingScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              child: const Text('Get Started', style: TextStyle(fontSize: 18, color: Colors.white)),
+              child: Text('get_started'.tr(), style: const TextStyle(fontSize: 18, color: Colors.white)),
             ),
             const SizedBox(height: 10),
             TextButton(

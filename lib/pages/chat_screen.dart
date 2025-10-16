@@ -1,8 +1,11 @@
+import 'package:ai_universe_chat/pages/settings_screen.dart';
+import 'package:ai_universe_chat/widgets/chat_history_search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_universe_chat/models/chat_message.dart';
 import 'package:ai_universe_chat/services/api_service.dart';
 import 'package:ai_universe_chat/widgets/app_drawer.dart';
 import 'package:ai_universe_chat/widgets/chat_bubble.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -61,15 +64,28 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('AI Chatbot'),
-        backgroundColor: const Color(0xFF1E1E1E),
+        title: Text('chatbot_title'.tr()),
+        backgroundColor: Theme.of(context).cardColor,
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_vert),
-            onPressed: () {},
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: ChatHistorySearchDelegate(),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
+            },
           ),
         ],
       ),
@@ -103,26 +119,24 @@ class ChatScreenState extends State<ChatScreen> {
   Widget _buildMessageComposer() {
     return Container(
       padding: const EdgeInsets.all(8.0),
-      color: const Color(0xFF1E1E1E),
+      color: Theme.of(context).cardColor,
       child: Row(
         children: [
           IconButton(
-            icon: const Icon(Icons.emoji_emotions_outlined, color: Colors.white70),
+            icon: const Icon(Icons.emoji_emotions_outlined),
             onPressed: () {},
           ),
           Expanded(
             child: TextField(
               controller: _controller,
-              style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration.collapsed(
-                hintText: 'Type a message...',
-                hintStyle: TextStyle(color: Colors.white70),
+              decoration: InputDecoration.collapsed(
+                hintText: 'type_message'.tr(),
               ),
               onSubmitted: (_) => _sendMessage(),
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.mic, color: Colors.white70),
+            icon: const Icon(Icons.mic),
             onPressed: () {},
           ),
           IconButton(

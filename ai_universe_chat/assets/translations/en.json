@@ -1,17 +1,13 @@
 {
+  "app_title": "AI Universe Chat",
   "welcome_title": "Welcome to AI Chat Universe",
   "welcome_subtitle": "Your AI-Powered Assistant",
-  "feature_title": "Smart Conversations",
-  "feature_description": "Our chatbot provides intelligent and relevant responses to your questions.",
   "get_started": "Get Started",
-  "login_prompt": "Already have an account? Login",
-  "chatbot_title": "AI Chatbot",
-  "type_message": "Type a message...",
-  "app_name": "AI Universe",
   "search": "Search",
   "new_tab": "New Tab",
   "history": "History",
   "dark_mode": "Dark Mode",
+  "eye_mode": "Eye Mode",
   "language": "Language",
   "about": "About",
   "security": "Security",
@@ -21,7 +17,8 @@
   "model": "Model",
   "save_key": "Save Key",
   "reset": "Reset",
-  "log_out": "Log Out",
-  "documentation": "Kilo Code Documentation",
-  "greeting": "Hello! How can I assist you today?"
+  "chatbot_title": "AI Chatbot",
+  "type_message": "Type a message...",
+  "settings_saved": "Settings Saved!",
+  "settings_reset": "Settings Reset!"
 }
