@@ -15,7 +15,7 @@ Future<void> main() async {
         Locale('hi'),
         Locale('ar'),
       ],
-      path: 'assets/translations',
+      path: 'assets/languages',
       fallbackLocale: const Locale('en'),
       child: ChangeNotifierProvider(
         create: (_) => ThemeService(),
